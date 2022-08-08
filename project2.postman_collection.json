@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "028b41b6-0ad6-4d12-aca7-3d323efd5853",
+		"name": "project2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21709766"
+	},
+	"item": [
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var datas = pm.response.json();\r",
+							"pm.environment.set('id', datas.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"first Name validation\", function () {\r",
+							"    pm.expect(datas.first_name).to.eql(\"sample string 2\");\r",
+							"});\r",
+							"pm.test(\"first Name validation\", function () {\r",
+							"    pm.expect(datas.first_name).to.eql(\"sayeed\");\r",
+							"});\r",
+							"pm.test(\"middle Name validation\", function () {\r",
+							"    pm.expect(datas.middle_name).to.eql(\"sample string 3\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"middle Name validation\", function () {\r",
+							"    pm.expect(datas.middle_name).to.eql(\"anwar\");\r",
+							"});\r",
+							"pm.test(\"last Name validation\", function () {\r",
+							"    pm.expect(datas.last_name).to.eql(\"sample string 4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"date of Birth validation\", function () {\r",
+							"    pm.expect(datas.date_of_birth).to.eql(\"sample string 5\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"date of Birth validation\", function () {\r",
+							"    pm.expect(datas.date_of_birth).to.eql(\"05-07-2022\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"first_name\": \"sample string 2\",\r\n \"middle_name\": \"sample string 3\",\r\n \"last_name\": \"sample string 4\",\r\n \"date_of_birth\": \"sample string 5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_Url}}/api/studentsDetails",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_Url}}/api/studentsDetails",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get specfic data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var datas = pm.response.json();\r",
+							"\r",
+							"var verifyId = pm.variables.get(\"id\");\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"id check\", function () {\r",
+							"    pm.expect(datas.data.id).to.eql(verifyId);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"first Name check\", function () {\r",
+							"    pm.expect(datas.data.first_name).to.eql(\"sample string 2\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"middle Name check\", function () {\r",
+							"    pm.expect(datas.data.middle_name).to.eql(\"sample string 3\");\r",
+							"});\r",
+							"pm.test(\"last Name check\", function () {\r",
+							"    pm.expect(datas.data.last_name).to.eql(\"sample string 4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"date of Birth check\", function () {\r",
+							"    pm.expect(datas.data.date_of_birth).to.eql(\"sample string 5\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_Url}}/api/studentsDetails/{{id}}",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var datas = pm.response.json();\r",
+							"pm.environment.set('id', datas.id);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});  \r",
+							"\r",
+							"pm.test(\"status field validation\", function () {\r",
+							"    pm.expect(datas.status).to.eql(\"true\");\r",
+							"});\r",
+							"pm.test(\"message field validation\", function () {\r",
+							"    pm.expect(datas.msg).to.eql(\"update  data success\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"id\":{{id}},\r\n \"first_name\": \"sample \",\r\n \"middle_name\": \"sample \",\r\n \"last_name\": \"sample \",\r\n \"date_of_birth\": \"sample \"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_Url}}/api/studentsDetails/{{id}}",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
