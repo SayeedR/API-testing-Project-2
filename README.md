@@ -1,5 +1,4 @@
-# API-testing-Project-2
-You must sign in to a Postman account to use this feature.
+API (Application Programming Interface) testing is a type of software testing that aims to determine whether the APIs that are developed meet expectations when it comes to functionality, performance, reliability and security for an application. Am try to test the api and generate the report as my Api testing -Project-1 You must sign in to a Postman account to use this feature.
 
 You can import data in bulk from a GitHub repository.
 
